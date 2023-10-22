@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nginx:
+    build: ./requirements/nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - wordpress
+  
+  wordpress:
+    build: ./requirements/wordpress
+    environment:
+      WORDPRESS_DB_HOST: mariadb_container_name
+      WORDPRESS_DB_USER: example_user
+      WORDPRESS_DB_PASSWORD: example_password
+      WORDPRESS_DB_NAME: example_db
